@@ -12,3 +12,16 @@ export const trust = [["You own what we build","Every runbook, configuration, an
 export const principles = [["Practical first","We focus on outcomes, not theoretical frameworks. Every engagement produces working security processes your team can operate on day one — no lengthy implementation cycles, no hidden dependencies."],["Human-controlled AI","AI handles the volume; humans make the decisions. Every automated action is visible, auditable, and subject to analyst review. No black-box responses, no actions without an owner."],["Works with your stack","We integrate with the tools you already use. No rip-and-replace, no new consoles to learn, no pressure to adopt a proprietary ecosystem. Your investment stays yours."]];
 export const regions = [["North America","United States","Supporting US-based clients across compliance-sensitive industries — finance, healthcare, SaaS, and government contracting."],["Gulf Region","GCC","Serving clients across the Gulf Cooperation Council with regional regulatory knowledge and on-the-ground availability."],["European Operations","Europe","Helping European organisations navigate GDPR, NIS2, and sector-specific requirements with practical, audit-ready security programs."]];
 export const faqs = [["Who do you work with?","Startups, SMBs, MSPs, and lean IT/security teams that need practical security operations without enterprise overhead."],["Do you offer 24/7 monitoring?","Yes, as analyst-staffed 24/7 monitoring under AI-Assisted SOC. Coverage is scoped per engagement."],["Will you certify us for compliance?","No. CaiberOne is not a certification body or auditor. We implement the technical controls, workflows, and evidence processes your auditor will assess."],["Who approves AI-driven actions?","Your team. AI handles triage and recommendations; every response action is visible, auditable, and approved by a person."],["Do we need to replace our tools?","No. We integrate with the tools you already run, on your tenancy, with no rip-and-replace."],["Is penetration testing authorized?","Always. Testing is delivered under written client authorization and scoped per engagement."],["What do we keep at the end?","Everything: every runbook, configuration, and decision log, plus a documented handover."]];
+
+export const alertQueue = [["INC-4417", "CRITICAL", "prod-eu-04", "14:02:11"], ["INC-4416", "HIGH", "vpn-gw-02", "13:48:02"], ["INC-4415", "ELEVATED", "sso.caiberone", "12:11:57"], ["INC-4412", "CLEAR", "build-agent-9", "09:41:30"]];
+export const workflowSteps = [
+  ["Alert", "A detection fires from the tools you already run."],
+  ["Normalize", "The raw event is parsed into a consistent, comparable record."],
+  ["Enrich", "Asset, identity, and threat-intel context is attached."],
+  ["AI-assisted summary", "AI drafts what happened and why it matters, in plain language.", true],
+  ["Prioritize", "Ranked against your own asset criticality, not a generic score."],
+  ["Notify", "Your team is pinged in Slack or Teams — not buried in an inbox."],
+  ["Ticket", "A ticket opens in Jira, ServiceNow, or TheHive with context attached."],
+  ["Human approval", "A person reviews and approves before any response action runs."],
+  ["Report", "The outcome is documented and written back to the record."],
+];

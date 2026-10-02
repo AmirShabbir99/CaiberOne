@@ -6,6 +6,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { Button, Logo, Reveal, Sweep, fade } from "./ui";
 import { services } from "../data";
 import RedGrade from "./RedGrade";
+import ContactDialogProvider from "./ContactDialog";
 
 const groups = Object.entries(services.reduce((a, s) => ((a[s.cat] ||= []).push(s), a), {}));
 const ul = "relative py-2 text-base uppercase after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-foreground after:transition-transform after:duration-300 hover:after:scale-x-100";
@@ -66,7 +67,7 @@ function MobileDrawer({ open, setOpen }) {
             </div>}
             <NavLink to="/about" onClick={close} className={item}>About</NavLink>
             <NavLink to="/contact" onClick={close} className={item}>Contact</NavLink>
-            <div className="mt-6"><Button primary to="/contact">Book a scoping call</Button></div>
+            <div className="mt-6"><Button primary book onClick={close}>Book a scoping call</Button></div>
           </motion.aside>
         </div>
       )}
@@ -80,15 +81,15 @@ function Navbar() {
   const loc = useLocation();
   useEffect(() => { setOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }, [loc.pathname]);
   return (
-    <motion.header initial={{ opacity: 0, y: -14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="relative inset-x-3 top-3 z-50 sm:inset-x-5 sm:top-5 sm:mr-10">
-      <div className="flex h-[66px] items-center justify-between gap-4 bg-header px-4 backdrop-blur-[6px] sm:h-[72px]">
+    <motion.header initial={{ opacity: 0, y: -14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="absolute inset-x-3 top-3 z-50 sm:inset-x-5 sm:top-5">
+      <div className="flex h-[66px] items-center justify-between gap-4 bg-white/10 px-4 backdrop-blur-[8px] sm:h-[72px]">
         <Logo />
         <nav className="hidden items-center gap-9 lg:flex" aria-label="Main navigation">
           <NavLink to="/" end className={cls}>Overview</NavLink><ServicesMenu />
           <NavLink to="/about" className={cls}>About</NavLink><NavLink to="/contact" className={cls}>Contact</NavLink>
         </nav>
         <div className="flex items-center gap-2">
-          <span className="hidden sm:block"><Button primary to="/contact">Book a scoping call</Button></span>
+          <span className="hidden sm:block"><Button primary book>Book a scoping call</Button></span>
           <button aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen(!open)} className="group relative isolate grid h-12 w-12 place-items-center overflow-hidden lg:hidden"><Sweep primary /><span className="relative">{open ? <X size={20} /> : <Menu size={20} />}</span></button>
         </div>
       </div>
@@ -117,6 +118,6 @@ function Footer() {
 
 export default function Layout() {
   const home = useLocation().pathname === "/";
-  return <div className="overflow-x-clip"><RedGrade /><Navbar /><main className={home ? "" : "pt-8"}><Suspense fallback={<div className="min-h-[70svh]" />}><Outlet /></Suspense></main><Footer /></div>;
+  return <ContactDialogProvider><div className="overflow-x-clip"><RedGrade /><Navbar /><main className={home ? "" : "pt-28"}><Suspense fallback={<div className="min-h-[70svh]" />}><Outlet /></Suspense></main><Footer /></div></ContactDialogProvider>;
 }
   

@@ -1,37 +1,35 @@
-import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { Frame, Reveal, Eyebrow, Heading, Lead, Button, VideoBg, overlayLeft, fade } from "../components/ui";
-import { CTA } from "../components/sections";
-import { Crumbs, Head } from "./ServiceDetail";
-import { services, principles, trust } from "../data";
-import { v } from "../videos";
+import { Crumbs } from "./ServiceDetail";
 import Seo from "../components/Seo";
+import { v } from "../videos";
+import { workflowSteps } from "../data";
 
-// NOTE: caiberone.com/services/ai-soc/workflow/ could not be fetched (robots block), so this page only
-// reuses verified copy from the home/about pages. Paste the page's own text into this file when available.
+// Content mirrors https://caiberone.com/services/ai-soc/workflow/
 export default function AiSocWorkflow() {
-  const soc = services.find((x) => x.id === "ai-soc");
-  const cards = [principles[1], trust[1], trust[2]];
   return (
     <div>
-      <Seo title="AI SOC Workflow Pilot" path="/services/ai-soc/workflow" description={soc.blurb} />
-      <Frame className="p-6 sm:p-10 lg:p-14"><VideoBg src={v.p33} overlay={overlayLeft} /><Reveal>
-        <Crumbs trail={[[soc.title, "/services/ai-soc"], ["AI SOC Workflow Pilot"]]} /><Eyebrow>{soc.cat}</Eyebrow>
-        <Heading>AI SOC Workflow Pilot</Heading><Lead center={false}>{soc.blurb}</Lead>
-        <motion.div variants={fade} className="mt-8 flex flex-wrap gap-3"><Button primary to="/contact">Book a scoping call</Button><Button to="/services/ai-soc">Back to AI-Assisted SOC</Button></motion.div>
-      </Reveal></Frame>
+      <Seo title="AI-SOC Workflow" path="/services/ai-soc/workflow" description="Every alert moves through a fixed sequence — detection, enrichment, AI-assisted triage, human approval, ticketing, and reporting. Nothing skips a step." />
+      <Frame className="grid min-h-[440px] content-center gap-10 p-6 sm:p-10 lg:p-14">
+        <VideoBg src={v.p33} overlay={overlayLeft} />
+        <Reveal className="max-w-3xl">
+          <Crumbs trail={[["AI-Assisted SOC", "/services/ai-soc"], ["How it works"]]} />
+          <Eyebrow>how it works</Eyebrow>
+          <Heading>An alert with an owner and a route.</Heading>
+          <Lead center={false}>Every alert moves through a fixed sequence — detection, enrichment, AI-assisted triage, human approval, ticketing, and reporting. Nothing skips a step.</Lead>
+          <motion.p variants={fade} className="mt-6 inline-flex gap-3 border border-border/60 bg-black/60 px-4 py-2 text-[11px] uppercase backdrop-blur-[6px]"><span className="text-primary">9 steps</span><span>Alert → Report</span></motion.p>
+        </Reveal>
+      </Frame>
+
       <Frame className="mt-20 p-6 sm:p-10 lg:p-14"><Reveal>
-        <Head eyebrow="our approach" title={<>Human-controlled AI,<br />on your stack</>} />
-        <div className="mt-12 grid gap-3 md:grid-cols-3">{cards.map(([t, p]) => (
-          <motion.article variants={fade} whileHover={{ y: -5 }} className="border border-border/60 bg-card bg-grid bg-[size:36px_36px] p-6" key={t}><h3 className="text-lg uppercase">{t}</h3><p className="mt-4 text-xs uppercase leading-5">{p}</p></motion.article>))}</div>
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">{workflowSteps.map(([t, p, ai], i) => (
+          <motion.article variants={fade} whileHover={{ y: -5 }} key={t} className="relative min-h-44 border border-border/60 bg-black p-6">
+            <div className="flex items-start justify-between"><span className="text-3xl font-medium text-primary">{String(i + 1).padStart(2, "0")}</span>{ai && <span className="bg-primary px-2 py-1 text-[10px] font-semibold uppercase">AI</span>}</div>
+            <h3 className="mt-6 text-lg uppercase">{t}</h3><p className="mt-3 text-xs uppercase leading-5 text-muted-foreground">{p}</p>
+          </motion.article>))}</div>
       </Reveal></Frame>
-      <Frame className="mt-20 p-6 sm:p-10 lg:p-14"><Reveal>
-        <Head eyebrow="also under AI-assisted SOC" title="Related services" />
-        <div className="mt-12 grid gap-3 md:grid-cols-2">{soc.items.filter((i) => i !== "AI SOC Workflow Pilot").map((i) => (
-          <motion.div variants={fade} whileHover={{ y: -5 }} key={i}><Link to="/services/ai-soc" className="block border border-border/60 bg-card p-6 text-sm uppercase hover:border-primary">{i}</Link></motion.div>))}</div>
-        <motion.p variants={fade} className="mt-8 border-l-2 border-primary pl-4 text-[11px] uppercase text-muted-foreground">{soc.note}</motion.p>
-      </Reveal></Frame>
-      <CTA />
+
+     
     </div>
   );
 }

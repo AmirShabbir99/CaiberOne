@@ -23,11 +23,11 @@ export function Hero() {
     <section
   id="home"
   aria-label="CaiberOne cybersecurity"
-  className="relative isolate min-h-[max(100svh,900px)] overflow-hidden bg-background pt-[30px] min-[1600px]:min-h-[max(100svh,1040px)] max-[700px]:min-h-[600px]"
+  className="relative isolate h-screen min-h-fit overflow-hidden bg-background pb-8 pt-[100px] max-[760px]:pt-[86px]"
 >
   <video
     poster={heroPoster}
-    className={`absolute inset-0 -z-10 h-full w-full object-cover ${redVideo}`}
+    className={`absolute inset-0 -z-10 h-full w-full object-cover [filter:url(#red-grade)_brightness(1.5)]`}
     autoPlay
     muted
     loop
@@ -36,8 +36,8 @@ export function Hero() {
   >
     <source src={heroVideo} />
   </video>
-    <div className="relative max-[760px]:pb-12">
-        <motion.div variants={stagger} initial="hidden" animate="show" className="relative ml-5 flex min-h-[790px] w-[58.5%] flex-col bg-panel-surface px-[26px] pb-[25px] pt-[29px] backdrop-blur-[6px] min-[1600px]:min-h-[910px] max-[1100px]:w-[57%] max-[760px]:ml-3 max-[760px]:min-h-[500px] sm:max-[760px]:min-h-[720px] max-[760px]:w-[calc(100%-24px)] max-[760px]:px-[19px] max-[760px]:py-6">
+    <div className="relative">
+        <motion.div variants={stagger} initial="hidden" animate="show" className="relative ml-5 flex min-h-[calc(100svh-132px)] w-[58.5%] flex-col bg-white/10 px-[26px] pb-[25px] pt-[29px] backdrop-blur-[8px] max-[1100px]:w-[57%] max-[760px]:ml-3 max-[760px]:min-h-[calc(100svh-116px)] sm:max-[760px]:min-h-[calc(100svh-116px)] max-[760px]:w-[calc(100%-24px)] max-[760px]:px-[19px] max-[760px]:py-6">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 border border-border opacity-70"
@@ -55,13 +55,11 @@ export function Hero() {
             <span className="absolute -bottom-px -right-px h-[13px] w-[13px] border-b-2 border-r-2 border-foreground" />
           </div>
           <motion.span variants={fade} className="text-sm font-semibold leading-normal text-primary max-[480px]:text-[10px]">/ CYBERSECURITY OPERATIONS &amp; ADVISORY</motion.span>
-          <motion.h1 variants={fade} transition={{ duration: 0.65 }} className="mt-5 whitespace-nowrap text-[clamp(42px,5vw,73px)] font-medium leading-[1.015] min-[1600px]:text-[83px] max-[1100px]:text-[clamp(39px,5vw,57px)] max-[760px]:text-[clamp(30px,6.8vw,51px)] max-[480px]:text-[clamp(27px,7vw,35px)]">SECURING<br />ORGANIZATIONS<br />WITH<br />PRACTICAL,<br />RELIABLE<br />CYBERSECURITY<br />SOLUTIONS</motion.h1>
+          <motion.h1 variants={fade} transition={{ duration: 0.65 }} className="mt-5 whitespace-nowrap text-[clamp(34px,min(5vw,calc((100svh_-_392px)_/_7.1)),73px)] font-medium leading-[1.015] min-[1600px]:text-[clamp(34px,min(5vw,calc((100svh_-_392px)_/_7.1)),83px)] max-[1100px]:text-[clamp(34px,min(5vw,calc((100svh_-_392px)_/_7.1)),57px)] max-[760px]:text-[clamp(30px,6.8vw,51px)] max-[480px]:text-[clamp(27px,7vw,35px)]">SECURING<br />ORGANIZATIONS<br />WITH<br />PRACTICAL,<br />RELIABLE<br />CYBERSECURITY<br />SOLUTIONS</motion.h1>
           <motion.p variants={fade} className="mt-8 text-[15px] font-semibold uppercase leading-[1.7] min-[1600px]:text-[17px] max-[1100px]:text-[13px] max-[760px]:mt-6 max-[480px]:text-[11px] max-[480px]:leading-[1.55]">AI-ASSISTED SECURITY OPERATIONS, TESTING, AND COMPLIANCE READINESS<br className="max-[480px]:hidden" /> — IMPLEMENTED, DOCUMENTED, AND HANDED TO YOUR TEAM.</motion.p>
-          <motion.div variants={fade} className="mt-auto flex flex-wrap gap-2.5 pt-1 sm:pt-[30px]"><Button primary to="/contact">Book a scoping call</Button><Button to="/services">See our services</Button></motion.div>
+          <motion.div variants={fade} className="mt-auto flex flex-wrap gap-2.5 pt-1 sm:pt-[30px]"><Button primary book>Book a scoping call</Button><Button to="/services">See our services</Button></motion.div>
         </motion.div>
-        <button type="button" onClick={go} className="absolute bottom-[22px] left-[calc(20px+58.5%+39px)] border-0 bg-transparent p-0 text-[18.5px] font-medium leading-6 text-foreground max-[1100px]:left-[calc(20px+57%+39px)] max-[1100px]:text-base max-[760px]:bottom-3 max-[760px]:left-auto max-[760px]:right-4 max-[760px]:text-xs">SCROLL DOWN</button>
-        <span className="absolute bottom-[22px] right-[26px] text-[18.5px] font-medium leading-6 max-[1100px]:text-base max-[760px]:hidden">/ CaiberOne</span>
-      </div>
+       </div>
     </section>
   );
 }
@@ -69,10 +67,11 @@ export function Hero() {
 export function Stats() {
   return (
     <Frame id="more" className="mt-3 p-6 scroll-mt-28">
-      <div className="grid gap-6 sm:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-4">
         {[
           [integrations.length, "Security tools integrated"],
           [services.length, "Service capabilities"],
+          [10, "Compliance frameworks"],
           [regions.length, "Regions served"],
         ].map(([n, l]) => (
           <div key={l} className="text-center">
@@ -122,7 +121,7 @@ export function Services({ full = false, video }) {
         <div className="mx-auto mt-14 grid max-w-6xl md:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => {
             const Icon = icons[s.id]; return (
-              <motion.article id={s.id} variants={fade} whileHover={{ y: -6 }} className={`flex flex-col border bg-card/60 p-6 backdrop-blur-[6px] ${s.flag ? "border-primary shadow-glow" : "border-border/60"}`} key={s.id}>
+              <motion.article id={s.id} variants={fade} whileHover={{ y: -6 }} className={`flex flex-col border bg-black p-6 backdrop-blur-[6px] ${s.flag ? "border-primary shadow-glow" : "border-border/60"}`} key={s.id}>
                 <div className="flex items-center justify-between"><Icon size={30} strokeWidth={1} />{s.flag && <span className="bg-primary px-2 py-1 text-[10px] font-semibold uppercase">Flagship</span>}</div>
                 <p className="mt-6 text-[10px] uppercase text-primary">{s.cat}</p>
                 <h3 className="mt-2 text-lg uppercase">{s.title}</h3>
@@ -209,7 +208,7 @@ export function CTA() {
       <Reveal className="relative flex min-h-[520px] flex-col items-center justify-center px-6 text-center">
         <Heading center>Ready to see what a<br />working process looks like?</Heading>
         <Lead>Tell us about your needs and a consultant will reach out within one business day.</Lead>
-        <motion.div variants={fade} className="mt-7"><Button primary to="/contact">Book a scoping call</Button></motion.div>
+        <motion.div variants={fade} className="mt-7"><Button primary book>Book a scoping call</Button></motion.div>
       </Reveal>
     </Frame>
   );

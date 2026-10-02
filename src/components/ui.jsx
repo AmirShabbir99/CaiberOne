@@ -2,6 +2,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView, animate } from "motion/react";
 import { boost } from "../videos";
+import { useContactDialog } from "./contactContext";
 
 export const fade = { hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } };
 export const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.075 } } };
@@ -39,10 +40,12 @@ export const Sweep = ({ primary, soft }) => {
     </span>
   );
 };
-export function Button({ children, primary = false, to, href, onClick, type = "button", disabled }) {
+export function Button({ children, primary = false, to, href, onClick, type = "button", disabled, book }) {
+  const { open } = useContactDialog();
   const cls = `group relative isolate inline-flex min-h-12 items-center justify-center overflow-hidden border px-6 text-xs font-semibold uppercase transition-colors duration-700 disabled:opacity-60 ${primary ? "border-primary bg-primary text-primary-foreground shadow-glow hover:border-[#1a1a1a]" : "border-border bg-card/60 text-foreground hover:border-[#ececec]"}`;
   const m = { whileTap: { scale: 0.97 }, className: cls };
   const inner = <><Sweep primary={primary} /><span className={`relative transition-colors duration-500 group-hover:delay-300 ${primary ? "" : "group-hover:text-black"}`}>{children}</span></>;
+  if (book) return <motion.button type="button" onClick={(e) => { onClick?.(e); open(); }} {...m}>{inner}</motion.button>;
   if (to) return <MLink to={to} {...m}>{inner}</MLink>;
   if (href) return <motion.a href={href} {...m}>{inner}</motion.a>;
   return <motion.button type={type} onClick={onClick} disabled={disabled} {...m}>{inner}</motion.button>;

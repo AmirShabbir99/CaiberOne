@@ -28,7 +28,6 @@ export default function ServiceDetail() {
         <VideoBg src={heroVideo[s.id]} overlay={overlayLeft} />
         <Reveal className="max-w-3xl">
           <Crumbs trail={[[s.title]]} /><Eyebrow>{s.cat}</Eyebrow><Heading>{s.title}</Heading><Lead center={false}>{s.blurb}</Lead>
-          <motion.div variants={fade} className="mt-8 flex flex-wrap gap-3"><Button primary to="/contact">Book a scoping call</Button><Button to="/services">All services</Button></motion.div>
         </Reveal>
       </Frame>
       <Frame className="mt-20 p-6 sm:p-10 lg:p-14"><Reveal>
@@ -52,7 +51,6 @@ export default function ServiceDetail() {
           <motion.div variants={fade} whileHover={{ y: -5 }} key={o.id}><Link to={`/services/${o.id}`} className="block h-full border border-border/60 bg-card bg-grid bg-[size:36px_36px] p-6 hover:border-primary">
             <I size={26} strokeWidth={1} /><h3 className="mt-5 text-sm uppercase">{o.title}</h3><p className="mt-3 text-xs uppercase leading-5 text-muted-foreground">{o.blurb}</p></Link></motion.div>); })}</div>
       </Reveal></Frame>
-      <CTA />
     </div>
   );
 }

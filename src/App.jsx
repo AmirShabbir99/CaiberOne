@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 const About = lazy(() => import("./pages/About"));
 const Services = lazy(() => import("./pages/Services"));
 const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
+const AiSoc = lazy(() => import("./pages/AiSoc"));
 const AiSocWorkflow = lazy(() => import("./pages/AiSocWorkflow"));
 const Contact = lazy(() => import("./pages/Contact"));
 
@@ -16,6 +17,7 @@ export default function App() {
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="services" element={<Services />} />
+        <Route path="services/ai-soc" element={<AiSoc />} />
         <Route path="services/ai-soc/workflow" element={<AiSocWorkflow />} />
         <Route path="services/:slug" element={<ServiceDetail />} />
         <Route path="about" element={<About />} />
