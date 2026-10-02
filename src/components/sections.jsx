@@ -20,9 +20,23 @@ const Head = ({ eyebrow, title, lead }) => <div className="text-center"><Eyebrow
 export function Hero() {
   const go = () => document.getElementById("more")?.scrollIntoView({ behavior: "smooth" });
   return (
-    <section id="home" aria-label="CaiberOne cybersecurity" className="relative isolate min-h-[max(100svh,900px)] overflow-hidden bg-background pt-[30px] min-[1600px]:min-h-[max(100svh,1040px)] max-[760px]:min-h-[max(100svh,820px)]">
-      <video poster={heroPoster} className={`absolute inset-0 -z-10 h-full w-full object-cover ${redVideo}`} autoPlay muted loop playsInline aria-hidden="true"><source src={heroVideo} /></video>
-      <div className="relative max-[760px]:pb-12">
+    <section
+  id="home"
+  aria-label="CaiberOne cybersecurity"
+  className="relative isolate min-h-[max(100svh,900px)] overflow-hidden bg-background pt-[30px] min-[1600px]:min-h-[max(100svh,1040px)] max-[700px]:min-h-[600px]"
+>
+  <video
+    poster={heroPoster}
+    className={`absolute inset-0 -z-10 h-full w-full object-cover ${redVideo}`}
+    autoPlay
+    muted
+    loop
+    playsInline
+    aria-hidden="true"
+  >
+    <source src={heroVideo} />
+  </video>
+    <div className="relative max-[760px]:pb-12">
         <motion.div variants={stagger} initial="hidden" animate="show" className="relative ml-5 flex min-h-[790px] w-[58.5%] flex-col bg-panel-surface px-[26px] pb-[25px] pt-[29px] backdrop-blur-[6px] min-[1600px]:min-h-[910px] max-[1100px]:w-[57%] max-[760px]:ml-3 max-[760px]:min-h-[500px] sm:max-[760px]:min-h-[720px] max-[760px]:w-[calc(100%-24px)] max-[760px]:px-[19px] max-[760px]:py-6">
           <div
             aria-hidden="true"
