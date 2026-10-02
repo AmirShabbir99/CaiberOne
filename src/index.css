@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@theme inline {
+  --font-sans: "JetBrains Mono", monospace;
+  --color-background: var(--background); --color-foreground: var(--foreground); --color-card: var(--card);
+  --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground); --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground); --color-border: var(--border); --color-panel: var(--panel);
+  --color-panel-surface: var(--panel-surface); --color-header: var(--header-surface);
+  --shadow-glow: 0 0 24px color-mix(in oklab, var(--primary) 26%, transparent);
+  --animate-marquee: marquee 32s linear infinite;
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  --background-image-service-radial: radial-gradient(circle at 52% 51%, color-mix(in oklab,var(--primary) 24%,transparent), transparent 36%), linear-gradient(180deg, color-mix(in oklab,var(--primary) 9%,transparent), transparent 38%);
+  --background-image-process-overlay: linear-gradient(90deg, color-mix(in oklab,var(--primary) 18%,transparent), color-mix(in oklab,var(--background) 30%,transparent));
+  --background-image-cta-overlay: linear-gradient(color-mix(in oklab,var(--primary) 20%,transparent), color-mix(in oklab,var(--background) 65%,transparent));
+  --background-image-grid: linear-gradient(color-mix(in oklab,var(--foreground) 4%,transparent) 1px,transparent 1px), linear-gradient(90deg,color-mix(in oklab,var(--foreground) 4%,transparent) 1px,transparent 1px);
+  --background-image-footer: linear-gradient(180deg,color-mix(in oklab,var(--primary) 9%,var(--background)),var(--background) 40%);
+}
+:root { --background: oklch(0.075 0.009 18); --foreground: oklch(0.96 0.005 30); --card: oklch(0.105 0.006 25); --muted: oklch(0.25 0.01 25);
+  --muted-foreground: oklch(0.7 0.01 25); --primary: oklch(0.61 0.24 28); --primary-foreground: oklch(0.98 0.005 30);
+  --border: oklch(0.96 0 0 / 0.48); --panel: oklch(0.075 0.007 25);
+  --header-surface: oklch(0.17 0.017 20 / 0.77); --panel-surface: oklch(0.18 0.028 24 / 0.81); }
+@layer base { * { border-color: var(--border); } :focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; } button, a { cursor: pointer; } }
