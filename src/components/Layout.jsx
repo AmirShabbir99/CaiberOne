@@ -81,7 +81,7 @@ function Navbar() {
   const loc = useLocation();
   useEffect(() => { setOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }, [loc.pathname]);
   return (
-    <motion.header initial={{ opacity: 0, y: -14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="absolute inset-x-3 top-3 z-50 sm:inset-x-5 sm:top-5">
+    <motion.header initial={{ opacity: 0, y: -14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="fixed inset-x-3 top-3 z-50 sm:inset-x-5 sm:top-5">
       <div className="flex h-[66px] items-center justify-between gap-4 bg-white/10 px-4 backdrop-blur-[8px] sm:h-[72px]">
         <Logo />
         <nav className="hidden items-center gap-9 lg:flex" aria-label="Main navigation">
