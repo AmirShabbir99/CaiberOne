@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { motion, useInView, animate } from "motion/react";
 import { boost } from "../videos";
 import { useContactDialog } from "./contactContext";
+import Logo1 from '../assets/logo4.png'
+
 
 export const fade = { hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } };
 export const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.075 } } };
@@ -15,7 +17,7 @@ export function Reveal({ children, className = "" }) {
   return <motion.div ref={ref} className={className} variants={stagger} initial="hidden" animate={seen ? "show" : "hidden"}>{children}</motion.div>;
 }
 export const Frame = ({ children, className = "", id }) => (
-  <section id={id} className={`relative isolate mx-auto w-[calc(100%-24px)] max-w-[1450px] border border-border/55 bg-panel ${className}`}>
+  <section id={id} className={`relative isolate mx-auto w-[calc(99%-24px)] max-w-[1450px] border border-border/55 bg-panel ${className}`}>
     {["-left-px -top-px", "-right-px -top-px", "-bottom-px -left-px", "-bottom-px -right-px"].map((p) => (
       <Fragment key={p}><i className={`absolute ${p} h-4 w-px bg-foreground`} /><i className={`absolute ${p} h-px w-4 bg-foreground`} /></Fragment>
     ))}
@@ -56,8 +58,12 @@ export const Heading = ({ children, center = false }) => (
 );
 export const Lead = ({ children, center = true }) => <motion.p variants={fade} className={`mt-6 max-w-3xl text-xs uppercase leading-5 ${center ? "mx-auto text-center" : ""}`}>{children}</motion.p>;
 export const Logo = () => (
-  <Link to="/" className="flex shrink-0 items-center gap-2 font-semibold uppercase">
-    <span className="grid h-7 w-7 rotate-45 place-items-center border-4 border-primary"><span className="h-2 w-2 border-2 border-primary" /></span><span>CaiberOne</span>
+  <Link to="/" className="flex shrink-0 items-center">
+    <img
+      src={Logo1}
+      alt="CaiberOne"
+      className="h-10 w-auto object-contain"
+    />
   </Link>
 );
 export function Count({ to }) {

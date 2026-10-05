@@ -69,15 +69,17 @@ export function Stats() {
     <Frame id="more" className="mt-3 p-6 scroll-mt-28">
       <div className="grid gap-6 sm:grid-cols-4">
         {[
-          [integrations.length, "Security tools integrated"],
-          [services.length, "Service capabilities"],
-          [10, "Compliance frameworks"],
-          [regions.length, "Regions served"],
-        ].map(([n, l]) => (
+          [20, "Security tools integrated", true],
+          [services.length, "Service capabilities", false],
+          [10, "Compliance frameworks", true],
+          [3, "Regions served", true],
+        ].map(([n, l, showPlus]) => (
           <div key={l} className="text-center">
             <p className="text-4xl font-medium text-primary">
               <Count to={n} />
+              {showPlus && "+"}
             </p>
+
             <p className="mt-2 text-xs uppercase">{l}</p>
           </div>
         ))}
